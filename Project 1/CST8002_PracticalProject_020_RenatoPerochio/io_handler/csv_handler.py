@@ -1,7 +1,7 @@
 import csv 
 from models.prey_record import PreyRecord
 
-DATASET_PATH = "data/prey_collection_raw_data.csv"
+DATASET_PATH = "data/prey collection & Analysis - raw data.csv"
 MAX_RECORDS = 1
 
 def load_records():
