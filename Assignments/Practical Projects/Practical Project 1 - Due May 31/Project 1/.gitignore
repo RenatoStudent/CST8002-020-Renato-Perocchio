@@ -1,0 +1,21 @@
+# Ignore all course folders
+Assignments/
+Class Resources/
+Hybrids/
+Notes/
+memory/
+
+# Ignore everything in Project 1 except the actual project folder
+Project 1/
+
+# Except the actual project folder
+!Project 1/
+!Project 1/CST8002_PracticalProject_020_RenatoPerochio/
+!Project 1/CST8002_PracticalProject_020_RenatoPerochio/**
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Don't ignore this file itself
+!.gitignore
