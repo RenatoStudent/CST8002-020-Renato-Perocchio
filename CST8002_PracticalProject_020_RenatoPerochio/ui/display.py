@@ -1,6 +1,6 @@
 DIVIDER = "=" * 55
 
-def show_records(records, author="Renato Perocchio"):
+def show_records(records, author):
     print(f"\n{DIVIDER}")
     print(f"  Loaded {len(records)} record(s) from dataset")
     print(f"  CST8002 Practical Project 1  |  Author: {author}")

@@ -7,7 +7,7 @@ MAX_RECORDS = 1
 def load_records():
     records = []
     try:
-        with open(DATASET_PATH, "r") as file:
+        with open(DATASET_PATH, "r", encoding="latin-1") as file:
             reader = csv.reader(file)
             next(reader)
             count = 0
@@ -24,8 +24,8 @@ def load_records():
                     long=row[6],
                     delta13C=row[7],
                     delta13Cc=row[8],
-                    deltaN=row[9],
-                    deltaNc=row[10],
+                    delta15N=row[9],
+                    delta15Nc=row[10],
                     tp=row[11],
                     cn=row[12],
                     astaxanthin=row[13],

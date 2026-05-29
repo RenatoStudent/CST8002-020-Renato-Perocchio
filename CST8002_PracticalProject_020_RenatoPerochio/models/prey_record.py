@@ -1,4 +1,4 @@
-class Book:
+class PreyRecord:
     def __init__(self, year, species, common_name, study_site, associated_community, lat, long, 
             delta13C, delta13Cc, deltaN, deltaNc, tp, cn, astaxanthin, canthaxanthin, retinol):
         self.year =  year
