@@ -7,7 +7,7 @@ MAX_RECORDS = 1
 def load_records():
     records = []
     try:
-        with open(DATASET_PATH, "r", newline="") as file:
+        with open(DATASET_PATH, "r") as file:
             reader = csv.reader(file)
             next(reader)
             count = 0
