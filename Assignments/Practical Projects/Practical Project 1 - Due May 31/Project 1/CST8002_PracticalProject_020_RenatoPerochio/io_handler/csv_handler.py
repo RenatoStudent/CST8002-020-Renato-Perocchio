@@ -6,20 +6,25 @@
 # References:
 #   [1] Python Software Foundation. (2024). csv — CSV File Reading and Writing.
 #       docs.python.org. [online] Available at: https://docs.python.org/3/library/csv.html
-#       [Accessed on 31 May 2026]
+#       [Accessed on 29 May 2026]
 #   [2] Python Software Foundation. (2024). Errors and Exceptions.
 #       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/errors.html
-#       [Accessed on 31 May 2026]
+#       [Accessed on 29 May 2026]
 #   [3] Python Software Foundation. (2024). Input and Output.
 #       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/inputoutput.html
-#       [Accessed on 31 May 2026]
+#       [Accessed on 29 May 2026]
 #   [4] GeeksForGeeks. (2024). Reading CSV Files in Python. geeksforgeeks.org.
 #       [online] Available at: https://www.geeksforgeeks.org/pandas/reading-csv-files-in-python/
-#       [Accessed on 31 May 2026]
+#       [Accessed on 29 May 2026]
 #   [5] Real Python. (2024). Reading CSV Files with csv. realpython.com.
 #       [online] Available at: https://realpython.com/python-csv/#reading-csv-files-with-csv
-#       [Accessed on 31 May 2026]
+#       [Accessed on 29 May 2026]
 # ============================================================
+
+"""
+Handles loading and parsing of the prey collection CSV dataset.
+Reads records from the file and returns them as a list of PreyRecord objects.
+"""
 
 import csv 
 from models.prey_record import PreyRecord
@@ -28,6 +33,14 @@ DATASET_PATH = "data/prey collection & Analysis - raw data.csv"
 MAX_RECORDS = 5
 
 def load_records():
+    """
+    Opens and reads the prey collection CSV dataset, parsing each row into a PreyRecord 
+    object and storing them in a list.
+
+    Returns:
+        list: A list of PreyRecord objects loaded from the dataset.
+        Returns an empty list if the file is missing or an error occurs.
+    """
     records = []
     try:
         with open(DATASET_PATH, "r", encoding="latin-1") as file:

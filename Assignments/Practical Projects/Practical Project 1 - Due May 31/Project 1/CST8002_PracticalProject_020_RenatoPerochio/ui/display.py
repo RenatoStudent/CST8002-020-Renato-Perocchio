@@ -6,12 +6,25 @@
 # References:
 #   [1] Python Software Foundation. (2024). Input and Output.
 #       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/inputoutput.html
-#       [Accessed on 31 May 2026]
+#       [Accessed on 29 May 2026]
 # ============================================================
+
+"""
+Handles all console output for the program.
+Displays loaded prey collection records to the screen in a formatted layout.
+"""
 
 DIVIDER = "=" * 55
 
 def show_records(records, author):
+    """
+    Loops over a list of PreyRecord objects and prints each record's
+    fields to the console in a readable format.
+
+    Args:
+        records (list): A list of PreyRecord objects to display.
+        author (str): The author's full name to display in the header.
+    """
     print(f"\n{DIVIDER}")
     print(f"  Loaded {len(records)} record(s) from dataset")
     print(f"  CST8002 Practical Project 1  |  Author: {author}")
