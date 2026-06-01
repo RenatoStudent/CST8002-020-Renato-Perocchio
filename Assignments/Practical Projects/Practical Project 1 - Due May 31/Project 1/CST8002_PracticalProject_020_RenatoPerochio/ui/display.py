@@ -1,3 +1,14 @@
+# ============================================================
+# Course:      CST8002 - Programming Language Research Project
+# Professor:   Stanley Pieda
+# Due Date:    May 31, 2026
+# Author:      Renato Perocchio
+# References:
+#   [1] Python Software Foundation. (2024). Input and Output.
+#       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/inputoutput.html
+#       [Accessed on 31 May 2026]
+# ============================================================
+
 DIVIDER = "=" * 55
 
 def show_records(records, author):

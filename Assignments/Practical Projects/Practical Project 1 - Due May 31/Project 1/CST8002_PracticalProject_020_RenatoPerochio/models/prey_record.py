@@ -1,3 +1,17 @@
+# ============================================================
+# Course:      CST8002 - Programming Language Research Project
+# Professor:   Stanley Pieda
+# Due Date:    May 31, 2026
+# Author:      Renato Perocchio
+# References:
+#   [1] Python Software Foundation. (2024). Classes. docs.python.org.
+#       [online] Available at: https://docs.python.org/3/tutorial/classes.html
+#       [Accessed on 31 May 2026]
+#   [2] CoderPad. (2024). Classes & OOP in Python. coderpad.io.
+#       [online] Available at: https://coderpad.io/blog/development/classes-object-oriented-programming-python/
+#       [Accessed on 31 May 2026]
+# ============================================================
+
 class PreyRecord:
     def __init__(self, year, species, common_name, study_site, associated_community, lat, long, 
             delta13C, delta13Cc, delta15N, delta15Nc, tp, cn, astaxanthin, canthaxanthin, retinol):

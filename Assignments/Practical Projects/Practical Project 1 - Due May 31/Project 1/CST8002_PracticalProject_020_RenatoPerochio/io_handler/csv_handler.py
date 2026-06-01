@@ -1,3 +1,26 @@
+# ============================================================
+# Course:      CST8002 - Programming Language Research Project
+# Professor:   Stanley Pieda
+# Due Date:    May 31, 2026
+# Author:      Renato Perocchio
+# References:
+#   [1] Python Software Foundation. (2024). csv — CSV File Reading and Writing.
+#       docs.python.org. [online] Available at: https://docs.python.org/3/library/csv.html
+#       [Accessed on 31 May 2026]
+#   [2] Python Software Foundation. (2024). Errors and Exceptions.
+#       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/errors.html
+#       [Accessed on 31 May 2026]
+#   [3] Python Software Foundation. (2024). Input and Output.
+#       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/inputoutput.html
+#       [Accessed on 31 May 2026]
+#   [4] GeeksForGeeks. (2024). Reading CSV Files in Python. geeksforgeeks.org.
+#       [online] Available at: https://www.geeksforgeeks.org/pandas/reading-csv-files-in-python/
+#       [Accessed on 31 May 2026]
+#   [5] Real Python. (2024). Reading CSV Files with csv. realpython.com.
+#       [online] Available at: https://realpython.com/python-csv/#reading-csv-files-with-csv
+#       [Accessed on 31 May 2026]
+# ============================================================
+
 import csv 
 from models.prey_record import PreyRecord
 

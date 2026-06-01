@@ -1,3 +1,10 @@
+# ============================================================
+# Course:      CST8002 - Programming Language Research Project
+# Professor:   Stanley Pieda
+# Due Date:    May 31, 2026
+# Author:      Renato Perocchio
+# ============================================================
+
 from io_handler.csv_handler import load_records
 from ui.display import show_records
 
