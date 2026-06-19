@@ -1,0 +1,20 @@
+# Non-project assignment folders
+Practical Project 2 - Due June 21/
+
+# Report and submission files
+*.docx
+*.md
+Submission/
+*.zip
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Local config and tool folders
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
