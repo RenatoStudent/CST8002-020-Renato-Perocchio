@@ -7,6 +7,7 @@
 #   [1] Python Software Foundation. (2024). Classes. docs.python.org.
 #       [online] Available at: https://docs.python.org/3/tutorial/classes.html
 #       [Accessed on June 19, 2026]
+
 #   [2] Python Software Foundation. (2024). Data Structures. docs.python.org.
 #       [online] Available at: https://docs.python.org/3/tutorial/datastructures.html
 #       [Accessed on June 19, 2026]

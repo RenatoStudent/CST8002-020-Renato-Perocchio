@@ -15,6 +15,10 @@
 #   [3] Python Software Foundation. (2024). Errors and Exceptions.
 #       docs.python.org. [online] Available at: https://docs.python.org/3/tutorial/errors.html
 #       [Accessed on June 19, 2026]
+
+#   [4] R. Oliveira. (Jul 31, 2024). GUID vs UUID vs ULID: Understanding Unique Identifiers.
+#       medium.com. [online] Available at: https://medium.com/@ronaldo.oliver7/guid-vs-uuid-vs-ulid-understanding-unique-identifiers-565c88cdca13
+#       [Accessed on June 19, 2026]
 # ============================================================
 
 """
