@@ -1,7 +1,7 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Stanley Pieda
-# Due Date:    June 21, 2026
+# Due Date:    June 26, 2026
 # Author:      Renato Perocchio
 # References:
 #   [1] Python Software Foundation. (2024). Classes. docs.python.org.
