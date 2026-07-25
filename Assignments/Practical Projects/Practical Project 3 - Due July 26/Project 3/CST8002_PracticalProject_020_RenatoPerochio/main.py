@@ -1,21 +1,18 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Stanley Pieda
-# Due Date:    June 21, 2026
+# Due Date:    July 26, 2026
 # Author:      Renato Perocchio
 # References:
-#   [1] Python Software Foundation. (2024). Classes. docs.python.org.
-#       [online] Available at: https://docs.python.org/3/tutorial/classes.html
-#       [Accessed on June 19, 2026]
-#   [2] Python Software Foundation. (2024). Input and Output. docs.python.org.
-#       [online] Available at: https://docs.python.org/3/tutorial/inputoutput.html
-#       [Accessed on June 19, 2026]
+#   [1] Python Software Foundation. (2024). tkinter — Python interface to Tcl/Tk.
+#       docs.python.org. [online] Available at: https://docs.python.org/3/library/tkinter.html
+#       [Accessed on Jul 24, 2026]
 # ============================================================
 
 """
-Entry point for CST8002 Practical Project 2.
-Wires together the business and presentation layers, loads the dataset
-on startup, then hands control to the interactive menu.
+Entry point for CST8002 Practical Project 3.
+Wires together the business layer and the Tkinter presentation layer, loads
+the dataset on startup, then launches the GUI.
 """
 
 from business.record_manager import RecordManager
@@ -25,6 +22,10 @@ AUTHOR = "Renato Perocchio"
 
 
 def main():
+    """
+    Initializes the business layer, loads data from the CSV on startup,
+    and launches the Tkinter GUI.
+    """
     manager = RecordManager()
     count = manager.load_from_file()
     print(f"Startup: loaded {count} record(s) from dataset.")
