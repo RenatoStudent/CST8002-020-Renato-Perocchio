@@ -160,6 +160,8 @@ class PreyRecordApp(tk.Tk):
         ttk.Button(toolbar, text="Save (New UUID File)", command=self._save).pack(side="left", padx=4)
         ttk.Button(toolbar, text="New Record", command=self._create).pack(side="left", padx=4)
         ttk.Button(toolbar, text="View Selected", command=self._view_selected).pack(side="left", padx=4)
+        ttk.Button(toolbar, text="Edit Selected", command=self._edit_selected).pack(side="left", padx=4)
+        ttk.Button(toolbar, text="Delete Selected", command=self._delete_selected).pack(side="left", padx=4)
 
     def _build_table(self):
         """Creates the scrollable Treeview widget that lists all in-memory records."""
@@ -245,6 +247,31 @@ class PreyRecordApp(tk.Tk):
             return
         record = self._manager.get_record(index)
         RecordDialog(self, f"Viewing Record {index + 1}", existing=record, readonly=True)
+
+    def _edit_selected(self):
+        """Opens a RecordDialog pre-filled with the selected record, then saves changes."""
+        index = self._selected_index()
+        if index is None:
+            return
+        existing = self._manager.get_record(index)
+        dialog = RecordDialog(self, f"Edit Record {index + 1}", existing=existing)
+        self.wait_window(dialog)
+        if dialog.result is not None:
+            self._manager.update_record(index, dialog.result)
+            self._refresh_table()
+
+    def _delete_selected(self):
+        """Confirms with the user, then deletes the selected record."""
+        index = self._selected_index()
+        if index is None:
+            return
+        record = self._manager.get_record(index)
+        confirm = messagebox.askyesno(
+            "Confirm Delete", f"Delete record {index + 1} ({record.species})?"
+        )
+        if confirm:
+            self._manager.delete_record(index)
+            self._refresh_table()
 
 
 def launch(manager, author):
