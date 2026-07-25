@@ -19,22 +19,17 @@ on startup, then hands control to the interactive menu.
 """
 
 from business.record_manager import RecordManager
-from presentation.menu import Menu
+from presentation.gui import launch
 
 AUTHOR = "Renato Perocchio"
 
 
 def main():
-    """
-    Initializes the business layer, loads data from the CSV on startup,
-    and launches the interactive menu.
-    """
     manager = RecordManager()
     count = manager.load_from_file()
-    print(f"\n  Startup: loaded {count} record(s) from dataset.")
+    print(f"Startup: loaded {count} record(s) from dataset.")
 
-    menu = Menu(manager, AUTHOR)
-    menu.run()
+    launch(manager, AUTHOR)
 
 
 if __name__ == "__main__":
