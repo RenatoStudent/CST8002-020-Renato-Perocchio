@@ -1,6 +1,6 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
-# Professor:   Stanley Pieda
+# Professor:   Daniel Cormier
 # Due Date:    June 21, 2026
 # Author:      Renato Perocchio
 # References:

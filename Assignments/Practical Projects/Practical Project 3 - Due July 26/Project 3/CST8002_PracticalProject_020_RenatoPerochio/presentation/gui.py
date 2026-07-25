@@ -1,6 +1,6 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
-# Professor:   Stanley Pieda
+# Professor:   Daniel Cormier
 # Due Date:    July 26, 2026
 # Author:      Renato Perocchio
 # References:
@@ -14,9 +14,6 @@
 #       docs.python.org. [online] Available at: https://docs.python.org/3/library/tkinter.messagebox.html
 #       [Accessed on Jul 24, 2026]
 # ============================================================
-#
-# NOTE: swap these references for whatever tkinter docs/tutorials you actually
-# read while building this — the IEEE list must reflect your real sources.
 
 """
 Presentation layer: Tkinter graphical user interface for CST8002 Practical
