@@ -52,13 +52,14 @@ RECORD_FIELDS = [
 
 COLUMN_FIELDS = ["year", "species", "common_name", "study_site", "lat", "long"]
 
+
 class RecordDialog(tk.Toplevel):
     """
     Modal dialog window used for creating, editing, or viewing a record.
     Builds one labeled entry field per dataset column. In readonly mode,
     fields are disabled and only a Close button is shown.
     """
-    
+
     def __init__(self, parent, title, existing=None, readonly=False):
         """
         Builds the dialog's entry fields and buttons.
@@ -117,6 +118,7 @@ class RecordDialog(tk.Toplevel):
         self.result = PreyRecord(**values)
         self.destroy()
 
+
 class PreyRecordApp(tk.Tk):
     """
     Main application window. Presentation-layer class for the Tkinter GUI.
@@ -156,6 +158,8 @@ class PreyRecordApp(tk.Tk):
 
         ttk.Button(toolbar, text="Reload from File", command=self._reload).pack(side="left", padx=4)
         ttk.Button(toolbar, text="Save (New UUID File)", command=self._save).pack(side="left", padx=4)
+        ttk.Button(toolbar, text="New Record", command=self._create).pack(side="left", padx=4)
+        ttk.Button(toolbar, text="View Selected", command=self._view_selected).pack(side="left", padx=4)
 
     def _build_table(self):
         """Creates the scrollable Treeview widget that lists all in-memory records."""
@@ -175,6 +179,8 @@ class PreyRecordApp(tk.Tk):
 
         self._table.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
+
+        self._table.bind("<Double-1>", lambda event: self._view_selected())
 
     def _build_status_bar(self):
         """Creates the bottom status bar that always shows the author name and record count."""
@@ -210,6 +216,35 @@ class PreyRecordApp(tk.Tk):
         """Saves all in-memory records to a new UUID-named CSV file."""
         filename = self._manager.save_to_file()
         messagebox.showinfo("Save Complete", f"Records saved to:\n{filename}")
+
+    def _selected_index(self):
+        """
+        Returns the zero-based record index of the currently selected table row.
+
+        Returns:
+            int: The selected record's index, or None if nothing is selected.
+        """
+        selection = self._table.selection()
+        if not selection:
+            messagebox.showinfo("No Selection", "Select a record in the table first.")
+            return None
+        return int(selection[0])
+
+    def _create(self):
+        """Opens a blank RecordDialog and adds the resulting record on save."""
+        dialog = RecordDialog(self, "New Record")
+        self.wait_window(dialog)
+        if dialog.result is not None:
+            self._manager.add_record(dialog.result)
+            self._refresh_table()
+
+    def _view_selected(self):
+        """Opens a read-only dialog showing the selected record's values."""
+        index = self._selected_index()
+        if index is None:
+            return
+        record = self._manager.get_record(index)
+        RecordDialog(self, f"Viewing Record {index + 1}", existing=record, readonly=True)
 
 
 def launch(manager, author):
