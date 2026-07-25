@@ -52,6 +52,70 @@ RECORD_FIELDS = [
 
 COLUMN_FIELDS = ["year", "species", "common_name", "study_site", "lat", "long"]
 
+class RecordDialog(tk.Toplevel):
+    """
+    Modal dialog window used for creating, editing, or viewing a record.
+    Builds one labeled entry field per dataset column. In readonly mode,
+    fields are disabled and only a Close button is shown.
+    """
+    
+    def __init__(self, parent, title, existing=None, readonly=False):
+        """
+        Builds the dialog's entry fields and buttons.
+
+        Args:
+            parent (tk.Tk): The main application window.
+            title (str): Window title, e.g. "New Record" or "Edit Record".
+            existing (PreyRecord, optional): Record to pre-fill fields from, or
+                None to start with blank fields.
+            readonly (bool): If True, fields cannot be edited and only a
+                Close button is shown (used for "View" mode).
+        """
+        super().__init__(parent)
+        self.title(title)
+        self.resizable(False, False)
+        self.transient(parent)
+        self.grab_set()
+
+        self.result = None
+        self._entries = {}
+
+        form = ttk.Frame(self, padding=12)
+        form.grid(row=0, column=0, sticky="nsew")
+
+        for row, (attr, label) in enumerate(RECORD_FIELDS):
+            ttk.Label(form, text=label + ":").grid(row=row, column=0, sticky="e", pady=2, padx=(0, 8))
+            entry = ttk.Entry(form, width=40)
+            entry.grid(row=row, column=1, pady=2)
+            if existing is not None:
+                entry.insert(0, getattr(existing, attr))
+            if readonly:
+                entry.configure(state="readonly")
+            self._entries[attr] = entry
+
+        button_row = len(RECORD_FIELDS)
+        button_frame = ttk.Frame(form)
+        button_frame.grid(row=button_row, column=0, columnspan=2, pady=(12, 0))
+
+        if readonly:
+            ttk.Button(button_frame, text="Close", command=self.destroy).pack(side="left", padx=4)
+        else:
+            ttk.Button(button_frame, text="Save", command=self._on_save).pack(side="left", padx=4)
+            ttk.Button(button_frame, text="Cancel", command=self.destroy).pack(side="left", padx=4)
+
+        self.protocol("WM_DELETE_WINDOW", self.destroy)
+
+    def _on_save(self):
+        """Validates that no field was left blank, then builds a PreyRecord and closes."""
+        values = {}
+        for attr, label in RECORD_FIELDS:
+            value = self._entries[attr].get().strip()
+            if not value:
+                messagebox.showerror("Missing Value", f"'{label}' cannot be blank.", parent=self)
+                return
+            values[attr] = value
+        self.result = PreyRecord(**values)
+        self.destroy()
 
 class PreyRecordApp(tk.Tk):
     """
