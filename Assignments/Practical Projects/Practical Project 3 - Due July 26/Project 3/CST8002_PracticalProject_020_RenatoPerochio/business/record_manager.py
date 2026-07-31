@@ -1,7 +1,7 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Daniel Cormier
-# Due Date:    August 9, 2026
+# Due Date:    July 26, 2026
 # Author:      Renato Perocchio
 # References:
 #   [1] Python Software Foundation. (2024). Classes. docs.python.org.
@@ -10,16 +10,6 @@
 #   [2] Python Software Foundation. (2024). Data Structures. docs.python.org.
 #       [online] Available at: https://docs.python.org/3/tutorial/datastructures.html
 #       [Accessed on June 19, 2026]
-#   [3] Python Software Foundation. (2024). Classes. docs.python.org.
-#       [online] Available at: https://docs.python.org/3/tutorial/classes.html
-#       [Accessed on June 19, 2026]
-#   [4] Python Software Foundation. (2024). Data Structures. docs.python.org.
-#       [online] Available at: https://docs.python.org/3/tutorial/datastructures.html
-#       [Accessed on June 19, 2026]
-#   [5] Python Software Foundation. (2024). collections — Container datatypes.
-#       docs.python.org. [online] Available at:
-#       https://docs.python.org/3/library/collections.html
-#       [Accessed on Jul 30, 2026]
 # ============================================================
 
 """
@@ -28,8 +18,8 @@ All add, update, delete, and retrieval operations go through this class.
 The presentation layer calls RecordManager; RecordManager calls persistence.
 """
 
-from collections import Counter
 from persistence.csv_handler import read_records, write_records
+
 
 class RecordManager:
     """
@@ -131,20 +121,3 @@ class RecordManager:
             int: Total record count.
         """
         return len(self._records)
-
-    '''Done for Practical Project 04'''
-    def count_by_column(self, attr):
-        """
-        Groups the in-memory records by the given PreyRecord attribute name
-        and counts how many records fall into each distinct value. Used by
-        the Practical Project 4 chart feature to turn raw records into the
-        {label: count} shape a bar or pie chart needs.
-
-        Args:
-            attr (str): The PreyRecord attribute name to group by, e.g. "species".
-
-        Returns:
-            collections.Counter: Maps each distinct value of attr to its
-                count, ordered by first appearance in the in-memory list.
-        """
-        return Counter(getattr(record, attr) for record in self._records)

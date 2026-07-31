@@ -27,6 +27,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 from model.prey_record import PreyRecord
+from presentation.chart_view import build_chart, CHART_TYPES
 
 RECORD_FIELDS = [
     ("year",                 "Year"),
@@ -49,6 +50,11 @@ RECORD_FIELDS = [
 
 '''A subset of the above fields to display in the main table; all fields are shown in the record dialog.'''
 COLUMN_FIELDS = ["year", "species", "common_name", "study_site", "lat", "long"]
+
+# Fields with a manageable number of repeating values, suitable for
+# grouping into a bar or pie chart. Numeric measurement columns (delta13C,
+# tp, astaxanthin, etc.) are excluded since nearly every value is unique.
+CHARTABLE_FIELDS = ["year", "species", "common_name", "study_site", "associated_community"]
 
 
 class RecordDialog(tk.Toplevel):
