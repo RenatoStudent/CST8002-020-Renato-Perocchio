@@ -49,14 +49,20 @@ def build_chart(parent, counts, column_label, chart_type):
     figure = Figure(figsize=(6, 4.5), dpi=100)
     axes = figure.add_subplot(111)
 
-    labels = list(counts.keys())
-    values = list(counts.values())
+    # Counter preserves first-appearance order, not sorted order, so the
+    # (label, count) pairs are sorted here to display categories in a
+    # predictable, consistent order regardless of dataset row order.
+    
+    # QoL: Nice to see data sorted by age/oldest to youngest year
+    sorted_items = sorted(counts.items())
+    labels = [label for label, _ in sorted_items]
+    values = [count for _, count in sorted_items]
 
     if chart_type == "Pie Chart":
         axes.pie(values, labels=labels, autopct="%1.0f%%")
         axes.set_title(f"Record Count by {column_label}")
     else:
-        bars = axes.bar(labels, values, color="steelblue")
+        bars = axes.bar(labels, values, color="forestgreen")
         axes.bar_label(bars)
         axes.set_title(f"Record Count by {column_label}")
         axes.set_xlabel(column_label)

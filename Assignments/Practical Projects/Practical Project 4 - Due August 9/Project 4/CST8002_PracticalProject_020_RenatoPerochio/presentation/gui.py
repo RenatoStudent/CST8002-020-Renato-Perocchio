@@ -128,6 +128,73 @@ class RecordDialog(tk.Toplevel):
         self.result = PreyRecord(**values)
         self.destroy()
 
+class ChartDialog(tk.Toplevel):
+    """
+    Modal dialog that lets the user pick a dataset column and a chart
+    type, then displays a matplotlib chart of record counts for that
+    column. Delegates counting to RecordManager and drawing to
+    chart_view.build_chart; this class only wires the two together with
+    Tkinter controls.
+    """
+
+    def __init__(self, parent, manager, author):
+        """
+        Builds the chart dialog's controls and draws an initial chart.
+
+        Args:
+            parent (tk.Tk): The main application window.
+            manager (RecordManager): Business layer object used to
+                aggregate counts.
+            author (str): Author's full name, shown in this window too so
+                it remains visible while the dialog is open.
+        """
+        super().__init__(parent)
+        self.title("Chart Records")
+        self.geometry("650x600")
+        self.transient(parent)
+
+        self._manager = manager
+        self._canvas_widget = None
+        self._field_labels = {attr: label for attr, label in RECORD_FIELDS}
+
+        controls = ttk.Frame(self, padding=10)
+        controls.pack(side="top", fill="x")
+
+        ttk.Label(controls, text="Column:").pack(side="left")
+        self._column_var = tk.StringVar(value=CHARTABLE_FIELDS[0])
+        ttk.Combobox(
+            controls, textvariable=self._column_var, state="readonly",
+            values=CHARTABLE_FIELDS, width=20
+        ).pack(side="left", padx=(4, 12))
+
+        ttk.Label(controls, text="Chart Type:").pack(side="left")
+        self._chart_type_var = tk.StringVar(value=CHART_TYPES[0])
+        ttk.Combobox(
+            controls, textvariable=self._chart_type_var, state="readonly",
+            values=CHART_TYPES, width=12
+        ).pack(side="left", padx=4)
+
+        ttk.Button(controls, text="Generate Chart", command=self._generate).pack(side="left", padx=12)
+
+        self._chart_frame = ttk.Frame(self)
+        self._chart_frame.pack(side="top", fill="both", expand=True)
+
+        ttk.Label(
+            self, text=f"Program by {author}", anchor="w", relief="sunken", padding=6
+        ).pack(side="bottom", fill="x")
+
+        self._generate()
+
+    def _generate(self):
+        """Aggregates the selected column via RecordManager and (re)draws the chart."""
+        if self._canvas_widget is not None:
+            self._canvas_widget.get_tk_widget().destroy()
+
+        attr = self._column_var.get()
+        counts = self._manager.count_by_column(attr)
+        self._canvas_widget = build_chart(
+            self._chart_frame, counts, self._field_labels[attr], self._chart_type_var.get()
+        )
 
 class PreyRecordApp(tk.Tk):
     """
@@ -172,6 +239,8 @@ class PreyRecordApp(tk.Tk):
         ttk.Button(toolbar, text="View Selected", command=self._view_selected).pack(side="left", padx=4)
         ttk.Button(toolbar, text="Edit Selected", command=self._edit_selected).pack(side="left", padx=4)
         ttk.Button(toolbar, text="Delete Selected", command=self._delete_selected).pack(side="left", padx=4)
+        #Added for Practical Project 4: Chart Records button to open the chart dialog
+        ttk.Button(toolbar, text="Chart Records", command=self._chart).pack(side="left", padx=4)
 
     def _build_table(self):
         """Creates the scrollable Treeview widget that lists all in-memory records."""
@@ -282,6 +351,11 @@ class PreyRecordApp(tk.Tk):
         if confirm:
             self._manager.delete_record(index)
             self._refresh_table()
+
+    #Added for Practical Project 4
+    def _chart(self):
+        """Opens the ChartDialog for visualizing record counts by a chosen column."""
+        ChartDialog(self, self._manager, self._author)
 
 
 def launch(manager, author):
