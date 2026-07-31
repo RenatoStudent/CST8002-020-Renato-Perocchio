@@ -7,6 +7,9 @@ memory/
 # Ignore other assignment folders (not the project)
 Assignments/Practical Assessments/
 Assignments/Research Assessments/
+
+# Ignore raw screenshot folders (large image sets, not part of the source project)
+Assignments/Practical Projects/**/Screenshots/
 Assignments/Practical Projects/Practical Project 1 - Due May 31/Dataset Source and License - Spring 2026 (020).docx
 Assignments/Practical Projects/Practical Project 1 - Due May 31/PP1_STUDY_GUIDE.md
 Assignments/Practical Projects/Practical Project 1 - Due May 31/Practical Project Part 01 Handout 2026_V2.docx
