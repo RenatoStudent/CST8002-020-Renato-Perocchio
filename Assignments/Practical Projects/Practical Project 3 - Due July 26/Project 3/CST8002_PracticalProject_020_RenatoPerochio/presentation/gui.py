@@ -47,6 +47,7 @@ RECORD_FIELDS = [
     ("retinol",              "Retinol (mg/kg)"),
 ]
 
+'''A subset of the above fields to display in the main table; all fields are shown in the record dialog.'''
 COLUMN_FIELDS = ["year", "species", "common_name", "study_site", "lat", "long"]
 
 
@@ -70,25 +71,31 @@ class RecordDialog(tk.Toplevel):
                 Close button is shown (used for "View" mode).
         """
         super().__init__(parent)
-        self.title(title)
-        self.resizable(False, False)
-        self.transient(parent)
-        self.grab_set()
+        self.title(title)               # Pulls the title text passed in from the calling button.
+        self.resizable(False, False)    # Makes the window non-resizable.
+        self.transient(parent)          # Makes the dialog appear on top of the parent window.
+        self.grab_set()                 # Prevents interaction with the parent window until the dialog is closed.
 
         self.result = None
         self._entries = {}
 
+        # The frame below holds the form contents; sticky="nsew" makes the
+        # form take up all available space in the dialog window.
         form = ttk.Frame(self, padding=12)
         form.grid(row=0, column=0, sticky="nsew")
 
         for row, (attr, label) in enumerate(RECORD_FIELDS):
+            # row=row stacks each label below the last as enumerate counts up;
+            # column=0 lines every row up at the same grid position.
+            # sticky="e" means "stick to the east", right-aligning the label
+            # text against the entry field beside it.
             ttk.Label(form, text=label + ":").grid(row=row, column=0, sticky="e", pady=2, padx=(0, 8))
-            entry = ttk.Entry(form, width=40)
-            entry.grid(row=row, column=1, pady=2)
+            entry = ttk.Entry(form, width=40)       # Sets the width of the entry field to 40 characters.
+            entry.grid(row=row, column=1, pady=2)   # Places the entry field in the second column of the grid.
             if existing is not None:
-                entry.insert(0, getattr(existing, attr))
+                entry.insert(0, getattr(existing, attr))       # If an existing record was passed in, pre-fill this field.
             if readonly:
-                entry.configure(state="readonly")
+                entry.configure(state="readonly")               # In View mode, lock the field that now holds existing data.
             self._entries[attr] = entry
 
         button_row = len(RECORD_FIELDS)
@@ -146,7 +153,7 @@ class PreyRecordApp(tk.Tk):
 
         self._refresh_table()
 
-    # ── layout builders ────────────────────────────────────────────────────
+    # ── layout builders ──────────────────────────────────────────────────
 
     def _build_toolbar(self):
         """Creates the row of action buttons across the top of the window."""
