@@ -10,13 +10,7 @@
 #   [2] Python Software Foundation. (2024). Data Structures. docs.python.org.
 #       [online] Available at: https://docs.python.org/3/tutorial/datastructures.html
 #       [Accessed on June 19, 2026]
-#   [3] Python Software Foundation. (2024). Classes. docs.python.org.
-#       [online] Available at: https://docs.python.org/3/tutorial/classes.html
-#       [Accessed on June 19, 2026]
-#   [4] Python Software Foundation. (2024). Data Structures. docs.python.org.
-#       [online] Available at: https://docs.python.org/3/tutorial/datastructures.html
-#       [Accessed on June 19, 2026]
-#   [5] Python Software Foundation. (2024). collections — Container datatypes.
+#   [3] Python Software Foundation. (2024). collections — Container datatypes.
 #       docs.python.org. [online] Available at:
 #       https://docs.python.org/3/library/collections.html
 #       [Accessed on Jul 30, 2026]
@@ -132,7 +126,6 @@ class RecordManager:
         """
         return len(self._records)
 
-    '''Done for Practical Project 04'''
     def count_by_column(self, attr):
         """
         Groups the in-memory records by the given PreyRecord attribute name

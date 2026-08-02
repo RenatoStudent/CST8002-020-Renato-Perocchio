@@ -1,7 +1,7 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Daniel Cormier
-# Due Date:    July 26, 2026
+# Due Date:    August 9, 2026
 # Author:      Renato Perocchio
 # References:
 #   [1] Python Software Foundation. (2024). csv — CSV File Reading and Writing.
@@ -24,9 +24,14 @@ import csv
 import uuid
 from model.prey_record import PreyRecord
 
+# Path to the source dataset CSV, relative to the project root.
 DATASET_PATH = "data/Prey collection & analysis - raw data.csv"
+
+# Upper limit on rows read from the dataset by read_records().
 MAX_RECORDS = 100
 
+# Column headers written to the top row of every UUID-named save file,
+# in the same order PreyRecord's fields are written in write_records().
 HEADERS = [
     "Year/Année", "Species/Espèce", "Common name/Nom commun",
     "Study site/Site d'étude", "Associated community/Collectivité associée",

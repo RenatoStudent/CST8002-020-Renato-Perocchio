@@ -1,7 +1,7 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Daniel Cormier
-# Due Date:    July 26, 2026
+# Due Date:    August 9, 2026
 # Author:      Renato Perocchio
 # References:
 #   [1] Python Software Foundation. (2024). tkinter — Python interface to Tcl/Tk.
@@ -17,10 +17,12 @@
 
 """
 Presentation layer: Tkinter graphical user interface for CST8002 Practical
-Project 3. Replaces the console menu from Practical Project 2 with a windowed
-GUI. All create, read, update, delete, reload, and save operations are
-delegated to the existing RecordManager business-layer object; no business
-or persistence code is modified.
+Project 4. Carries forward the windowed GUI from Practical Project 3, where
+all create, read, update, delete, reload, and save operations are delegated
+to the existing RecordManager business-layer object. Adds the Practical
+Project 4 chart feature: a ChartDialog that lets the user pick a dataset
+column and chart type, aggregation is delegated to RecordManager and
+drawing is delegated to chart_view.build_chart.
 """
 
 import tkinter as tk
@@ -29,6 +31,8 @@ from tkinter import ttk, messagebox
 from model.prey_record import PreyRecord
 from presentation.chart_view import build_chart, CHART_TYPES
 
+# Every dataset column, in display order: (attribute name on PreyRecord, label
+# shown next to its entry field in RecordDialog).
 RECORD_FIELDS = [
     ("year",                 "Year"),
     ("species",              "Species"),
@@ -48,7 +52,8 @@ RECORD_FIELDS = [
     ("retinol",              "Retinol (mg/kg)"),
 ]
 
-'''A subset of the above fields to display in the main table; all fields are shown in the record dialog.'''
+# A subset of the above fields to display in the main table; all fields are
+# shown in the record dialog.
 COLUMN_FIELDS = ["year", "species", "common_name", "study_site", "lat", "long"]
 
 # Fields with a manageable number of repeating values, suitable for

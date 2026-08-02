@@ -1,7 +1,7 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Daniel Cormier
-# Due Date:    July 26, 2026
+# Due Date:    August 9, 2026
 # Author:      Renato Perocchio
 # References:
 #   [1] Python Software Foundation. (2024). tkinter — Python interface to Tcl/Tk.
@@ -10,7 +10,7 @@
 # ============================================================
 
 """
-Entry point for CST8002 Practical Project 3.
+Entry point for CST8002 Practical Project 4.
 Wires together the business layer and the Tkinter presentation layer, loads
 the dataset on startup, then launches the GUI.
 """
@@ -18,6 +18,8 @@ the dataset on startup, then launches the GUI.
 from business.record_manager import RecordManager
 from presentation.gui import launch
 
+# Displayed throughout the GUI (title bar, status bar) so the author's
+# name always remains visible while the program runs.
 AUTHOR = "Renato Perocchio"
 
 

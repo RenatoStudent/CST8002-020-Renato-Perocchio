@@ -1,7 +1,7 @@
 # ============================================================
 # Course:      CST8002 - Programming Language Research Project
 # Professor:   Daniel Cormier
-# Due Date:    June 21, 2026
+# Due Date:    August 9, 2026
 # Author:      Renato Perocchio
 # References:
 #   [1] Python Software Foundation. (2024). unittest — Unit testing framework.

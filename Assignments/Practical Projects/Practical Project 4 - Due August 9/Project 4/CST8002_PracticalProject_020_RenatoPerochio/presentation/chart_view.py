@@ -28,6 +28,8 @@ import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+# The chart types build_chart() supports; also the values shown in
+# ChartDialog's chart-type Combobox.
 CHART_TYPES = ["Bar Chart", "Pie Chart"]
 
 def build_chart(parent, counts, column_label, chart_type):
